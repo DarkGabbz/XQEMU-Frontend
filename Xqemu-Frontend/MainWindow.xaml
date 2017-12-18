@@ -22,6 +22,7 @@
         <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="19" Margin="10,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" TextChanged="textBox2_TextChanged"/>
         <Button x:Name="button4" Content="Browse" HorizontalAlignment="Left" Height="18" Margin="356,183,0,0" VerticalAlignment="Top" Width="59" Click="button4_Click"/>
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="18" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" TextChanged="textBox3_TextChanged"/>
+        <Button x:Name="SaveCfg" Content="Save Config" HorizontalAlignment="Left" Height="34" Margin="429,46,0,0" VerticalAlignment="Top" Width="79" Click="SaveCfg_Click"/>
 
     </Grid>
 </Window>

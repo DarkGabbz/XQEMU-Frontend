@@ -1,31 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Forms;
-using System.Security.Permissions;
 using System.Diagnostics;
+using System.IO;
 
 namespace Xqemu_Frontend
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            try
+            {
+                string[] readlines = File.ReadAllLines("frontend.cfg");
+                textBox.Text = readlines[0];
+                textBox1.Text = readlines[1];
+                textBox2.Text = readlines[2];
+                textBox3.Text = readlines[3];
+            }
+            catch { }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -81,10 +75,7 @@ namespace Xqemu_Frontend
                                 exeProcess.WaitForExit();
                             }
                         }
-                        catch
-                        {
-                            // Do absolutely nothing...
-                        }
+                        catch { }
                     }
                 }
             }
@@ -148,6 +139,13 @@ namespace Xqemu_Frontend
                 // Append Text Box
                 textBox3.Text = openFileDialog4.FileName;
             }
+        }
+
+        private void SaveCfg_Click(object sender, RoutedEventArgs e)
+        {
+            string[] lines = { textBox.Text, textBox1.Text, textBox2.Text, textBox3.Text };
+            File.WriteAllLines("frontend.cfg", lines);
+            System.Windows.MessageBox.Show("Config saved to frontend.cfg!");
         }
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
