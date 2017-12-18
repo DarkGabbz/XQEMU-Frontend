@@ -18,6 +18,10 @@ namespace Xqemu_Frontend
                 textBox1.Text = readlines[1];
                 textBox2.Text = readlines[2];
                 textBox3.Text = readlines[3];
+                if (readlines[4] == "true")
+                    checkBox.IsChecked = true;
+                else if (readlines[4] == "false")
+                    checkBox.IsChecked = false;
             }
             catch { }
         }
@@ -141,9 +145,14 @@ namespace Xqemu_Frontend
             }
         }
 
+        string tickBool;
         private void SaveCfg_Click(object sender, RoutedEventArgs e)
         {
-            string[] lines = { textBox.Text, textBox1.Text, textBox2.Text, textBox3.Text };
+            if (checkBox.IsChecked == true)
+                tickBool = "true";
+            else if (checkBox.IsChecked == false)
+                tickBool = "false";
+            string[] lines = { textBox.Text, textBox1.Text, textBox2.Text, textBox3.Text, tickBool };
             File.WriteAllLines("frontend.cfg", lines);
             System.Windows.MessageBox.Show("Config saved to frontend.cfg!");
         }
